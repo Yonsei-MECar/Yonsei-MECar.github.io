@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MECAR — 연세대학교 자작자동차 동아리</title>
+<meta name="description" content="연세대학교 자작자동차 동아리 MECAR(YUNDAI MOTORS RACING MECar). KSAE 대학생 자작자동차대회 Baja·Formula 출전. 2026/27 시즌 부원 모집.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="MECAR — 연세대학교 자작자동차 동아리">
+<meta property="og:description" content="차량 설계와 제작을 부원들이 직접 합니다. KSAE 대학생 자작자동차대회 Baja·Formula 출전.">
+<meta property="og:locale" content="ko_KR">
+<!-- TODO: 대표 사진(1200×630)을 assets/img/og.jpg 로 넣고 아래 주석을 푸세요 -->
+<!-- <meta property="og:image" content="https://yonseimecar.com/assets/img/og.jpg"> -->
+<!-- <meta property="og:url" content="https://yonseimecar.com/"> -->
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">본문 바로가기</a>
+
+<!--
+  로고는 동아리 실물 파일에서 벡터로 딴 것입니다.
+  fill="currentColor" 라서 부모의 color 값을 그대로 받습니다. 테마 전환에 자동 대응.
+  같은 파일이 assets/img/logo-mark.svg, logo-wordmark.svg 에도 있습니다.
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mecar-mark" viewBox="0 0 203 228">
+      <path fill="currentColor" fill-rule="evenodd" d="M 202 76 L 151 126 L 151 202 L 176 227 L 202 227 Z M 0 0 L 0 227 L 25 227 L 50 202 L 51 102 L 76 127 L 76 202 L 126 202 L 126 126 L 202 50 L 202 0 L 176 0 L 101 75 L 26 0 Z"/>
+    </symbol>
+    <symbol id="mecar-wordmark" viewBox="0 0 1396 264">
+      <path fill="currentColor" fill-rule="evenodd" d="M 708 263 L 979 262 L 979 233 L 945 199 L 772 200 Z M 422 70 L 360 133 L 360 263 L 422 263 Z M 1139 1 L 1199 63 L 1278 64 L 1244 99 L 1200 99 L 1200 121 L 1331 262 L 1395 263 L 1395 242 L 1292 138 L 1395 33 L 1395 1 Z M 979 1 L 766 1 L 704 64 L 704 235 L 771 169 L 771 101 L 808 64 L 945 63 L 979 29 Z M 432 1 L 432 45 L 512 128 L 434 210 L 434 263 L 682 263 L 682 233 L 648 198 L 529 197 L 564 159 L 649 159 L 649 99 L 552 99 L 456 4 Z M 430 2 L 373 2 L 134 241 L 134 263 L 200 261 L 429 30 Z M 1001 0 L 1001 263 L 1061 263 L 1063 235 L 1162 234 L 1092 158 L 1062 157 L 1063 94 L 1220 263 L 1301 263 L 1063 2 Z M 682 29 L 682 0 L 490 1 L 553 63 L 649 62 Z M 300 1 L 232 3 L 0 240 L 0 263 L 65 261 L 299 28 Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============================ 헤더 ============================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="MECAR 홈">
+      <svg class="mk" viewBox="0 0 203 228" aria-hidden="true"><use href="#mecar-mark"/></svg>
+      <svg class="wm" viewBox="0 0 1396 264" aria-hidden="true"><use href="#mecar-wordmark"/></svg>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="주요 메뉴">
+      <a href="#about">소개</a>
+      <a href="#season">출전 대회</a>
+      <a href="#fix">설계 개선</a>
+      <a href="#vehicle">차량</a>
+      <a href="#teams">팀</a>
+      <a href="#now">지금 하는 일</a>
+      <a href="#record">기록</a>
+      <a href="#sponsor">후원</a>
+      <a href="#join">모집</a>
+    </nav>
+
+    <div class="hdr-act">
+      <a class="btn btn-fill" href="#join">부원 모집</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="메뉴 열기"><i></i></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ 히어로 ============================ -->
+  <section id="top" class="hero">
+    <div class="wrap">
+      <svg class="hero-mark" viewBox="0 0 203 228" aria-hidden="true"><use href="#mecar-mark"/></svg>
+
+      <h1 class="hero-wm">
+        <span class="sr">MECAR</span>
+        <svg class="lg" viewBox="0 0 1396 264" aria-hidden="true"><use href="#mecar-wordmark"/></svg>
+      </h1>
+
+      <p class="hero-line">
+        <b>연세대학교 자작자동차 동아리</b>
+        <span class="sep">/</span>
+        <span>YUNDAI MOTORS RACING MECar</span>
+        <span class="sep">/</span>
+        <span>2026 · 27 SEASON</span>
+      </p>
+
+      <p class="hero-p">
+        차량 설계와 부품 발주, 제작, 테스트를 부원들이 직접 합니다.
+        이번 시즌에는 Baja 차량 M26B를 고치고, Formula 차량을 새로 만듭니다.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-fill" href="#join">부원 모집</a>
+        <a class="btn btn-line" href="#sponsor">후원 문의</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <dl class="stats">
+      <div><dt>Season</dt><dd>2026<small>/ 27 시즌</small></dd></div>
+      <div><dt>Team</dt><dd>5<small>차량 4팀 + 운영·기획팀</small></dd></div>
+      <div><dt>Baja</dt><dd>20<small>kW 정격 · 듀얼 모터</small></dd></div>
+      <div><dt>Room</dt><dd>A116<small>제1공학관</small></dd></div>
+    </dl>
+  </div>
+
+  <!-- ============================ 소개 ============================ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">About</span>
+        <h2>동아리 소개</h2>
+      </div>
+
+      <div class="about">
+        <div class="rv">
+          <p>
+            MECar는 자동차에 관심 있는 연세대학교 학생들이 모여, 직접 차량을 설계하고 제작해
+            대학생 자작자동차대회에 출전하는 동아리입니다.
+            <strong>기계 1·2·3팀과 전장팀</strong>이 파워트레인·샤시·프레임·전자장비를 나눠 맡고,
+            <strong>운영·기획팀</strong>이 후원과 대외 업무를 맡습니다.
+          </p>
+          <p>
+            Baja 차량은 전기 구동입니다. 2023년 이글호는 7kW 모터 하나를 썼고,
+            2024년 ARTEMIS GT에서 10kW로 올렸습니다. 2025년에는 모터를 두 개 달아
+            정격 20kW를 냈고, 좌우 후륜을 따로 제어해 선회 시 언더스티어를 줄였습니다.
+          </p>
+          <p>
+            전공은 공학 계열로 제한하지 않습니다. 차량을 만들어 본 경험도 필요하지 않습니다.
+          </p>
+        </div>
+
+        <div class="spec cut rv">
+          <h3>Profile</h3>
+          <dl>
+            <div><dt>소속</dt><dd>연세대학교</dd></div>
+            <div><dt>대회 등록명</dt><dd>YUNDAI MOTORS<br>RACING MECar</dd></div>
+            <div><dt>동아리방</dt><dd>제1공학관 A116호</dd></div>
+            <div><dt>출전</dt><dd>KSAE Baja · Formula</dd></div>
+            <div><dt>메일</dt><dd>contact@yonseimecar.com</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 출전 대회 ============================ -->
+  <section id="season">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">Competition</span>
+        <h2>출전 대회</h2>
+        <p>
+          한국자동차공학회(KSAE)가 주최하는 대학생 자작자동차대회는 Baja, Formula, EV,
+          자율주행, 기술, 발표 여섯 부문으로 나뉩니다. MECar는 Baja와 Formula에 나갑니다.
+        </p>
+      </div>
+
+      <div class="comps">
+        <article class="comp cut rv">
+          <div class="comp-h">
+            <div class="comp-top">
+              <span class="code">Off-road</span>
+              <span class="pill">2026 출전 완료</span>
+            </div>
+            <h3>Baja Student Korea</h3>
+            <p class="kr">대학생 자작자동차대회 Baja 부문</p>
+          </div>
+          <div class="comp-b">
+            <p>
+              학생이 직접 만든 오프로드 차량으로 겨룹니다. 서면 보고서와 네 개 주행 종목을
+              합산해 1,000점 만점으로 채점하고, 전기 구동 차량은 비개조 부문으로 분류되어
+              50점이 가산됩니다.
+            </p>
+            <div class="blk">
+              <h4>주행 종목</h4>
+              <ul class="chips">
+                <li>가속력 평가</li><li>동적성능평가</li><li>오토크로스</li><li>내구력 90분</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>MECar 기록</h4>
+              <ul class="rows">
+                <li><span class="k">2020</span><span>장려상, 베스트 팀워크상</span></li>
+                <li><span class="k">2024</span><span>내구력 경기 완주</span></li>
+                <li><span class="k">2026</span><span>M26B 출전 (33개 팀)</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="comp cut rv">
+          <div class="comp-h">
+            <div class="comp-top">
+              <span class="code">On-road</span>
+              <span class="pill hot">2027 첫 출전</span>
+            </div>
+            <h3>Formula Student Korea</h3>
+            <p class="kr">대학생 자작자동차대회 Formula 부문</p>
+          </div>
+          <div class="comp-b">
+            <p>
+              포뮬러 타입 1인승 경주차로 겨룹니다. 내연기관(c-Formula)과 전기(e-Formula)로
+              나뉘어 시상하며, MECar는 e-Formula로 나갑니다. Baja와 기술규정이 다릅니다.
+            </p>
+            <div class="blk">
+              <h4>주행 종목</h4>
+              <ul class="chips">
+                <li>가속</li><li>스키드패드</li><li>오토크로스-짐카나</li><li>내구 레이싱</li>
+              </ul>
+            </div>
+            <div class="blk">
+              <h4>준비 현황</h4>
+              <ul class="rows">
+                <li><span class="k">기계</span><span>프레임 설계, 파워트레인·냉각라인, 하드포인트 선정</span></li>
+                <li><span class="k">전장</span><span>배터리팩 설계, BMS 선정, 전기시스템보고서</span></li>
+                <li><span class="k">공통</span><span>배터리 카트, 푸시바 제작</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 설계 개선 ============================ -->
+  <section id="fix">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">Iteration</span>
+        <h2>2024 대회에서 깨진 것들</h2>
+        <p>
+          대회가 끝나면 문제가 난 부품부터 회의에 올립니다. 2025년 차량은 아래 네 건을
+          고치는 데서 출발했습니다.
+        </p>
+      </div>
+
+      <div class="fix rv">
+        <div class="fix-row">
+          <div class="fix-sys">제동</div>
+          <div class="bad">
+            <h4>일어난 일</h4>
+            <p>제동 테스트에서 브레이크 페달 암이 휘어 영구 변형됐습니다.</p>
+            <p class="cause">원인 — 해당 부품 해석을 누락한 채 설계·제작. 작은 하중에도 항복 강도를 넘겼습니다.</p>
+          </div>
+          <div class="good">
+            <h4>2025년 대응</h4>
+            <p>기존 브레이크 박스를 버리고 오토바이용 핸드 브레이크를 개조해 제작. 암은 직접 해석해 강성을 확보했습니다.</p>
+          </div>
+        </div>
+
+        <div class="fix-row">
+          <div class="fix-sys">파워트레인</div>
+          <div class="bad">
+            <h4>일어난 일</h4>
+            <p>선회 중 언더스티어가 났습니다.</p>
+            <p class="cause">원인 — 좌우 휠이 드라이브 샤프트 하나로 묶여 있어 내외륜 회전수 차이를 못 냈습니다.</p>
+          </div>
+          <div class="good">
+            <h4>2025년 대응</h4>
+            <p>모터와 컨트롤러를 좌우에 따로 두는 듀얼 모터로 바꿨습니다. 조향각 센서 값을 받아 좌우에 다른 속도를 명령합니다.</p>
+          </div>
+        </div>
+
+        <div class="fix-row">
+          <div class="fix-sys">파워트레인</div>
+          <div class="bad">
+            <h4>일어난 일</h4>
+            <p>기어박스가 40kg을 넘었고, 기어 오일이 과하게 차 캐비테이션과 출력 손실이 생겼습니다.</p>
+            <p class="cause">원인 — 감속에만 맞춘 설계라 크기가 커져 브레이크·프레임 패키징을 방해했습니다.</p>
+          </div>
+          <div class="good">
+            <h4>2025년 대응</h4>
+            <p>기어박스를 체인 드라이브로 교체했습니다. 구동계 무게가 <strong>40.75kg에서 11.80kg</strong>으로 내려갔습니다.</p>
+          </div>
+        </div>
+
+        <div class="fix-row">
+          <div class="fix-sys">전장</div>
+          <div class="bad">
+            <h4>일어난 일</h4>
+            <p>본선 경기 도중 킬스위치가 과열·손상되어 시동이 꺼졌습니다.</p>
+            <p class="cause">원인 — 제조사가 준 정격 사양을 그대로 믿고 썼는데 실제 전류·전압과 차이가 있었습니다.</p>
+          </div>
+          <div class="good">
+            <h4>2025년 대응</h4>
+            <p>고압 계통 전류를 직접 끊는 방식을 버리고, 컨택터와 저압 계통으로 전원을 제어하도록 바꿨습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 차량 ============================ -->
+  <section id="vehicle">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">Vehicle</span>
+        <h2>역대 Baja 차량</h2>
+      </div>
+
+      <div class="veh-scroll cut rv">
+        <table class="veh">
+          <caption class="sr">MECar 역대 Baja 차량 제원 비교</caption>
+          <thead>
+            <tr>
+              <th scope="col">항목</th>
+              <th scope="col">2023</th>
+              <th scope="col">2024</th>
+              <th scope="col">2025</th>
+              <th scope="col">2026</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">차량명</th>
+              <td class="name">이글호</td>
+              <td class="name">ARTEMIS GT</td>
+              <td class="name">ARTEMIS GT</td>
+              <td class="name now">M26B</td>
+            </tr>
+            <tr><th scope="row">전장</th><td>1,962 mm</td><td>2,046 mm</td><td>1,980 mm</td><td class="now">—</td></tr>
+            <tr><th scope="row">전폭</th><td>1,452 mm</td><td>1,566 mm</td><td>1,470 mm</td><td class="now">—</td></tr>
+            <tr><th scope="row">전고</th><td>1,771 mm</td><td>1,540 mm</td><td>1,450 mm</td><td class="now">—</td></tr>
+            <tr><th scope="row">축거</th><td>1,462 mm</td><td>1,546 mm</td><td>1,400 mm</td><td class="now">—</td></tr>
+            <tr><th scope="row">공차중량</th><td>216 kg</td><td>326 kg</td><td>410 kg</td><td class="now">—</td></tr>
+            <tr><th scope="row">동력원</th><td>AGNI 7kW DC</td><td>GOLDEN MOTOR 10kW</td><td>QS165 10kW × 2</td><td class="now">—</td></tr>
+            <tr><th scope="row">동력 전달</th><td>체인 · 오픈 디퍼렌셜</td><td>체인 · 기어박스</td><td>체인 · 등속 조인트</td><td class="now">—</td></tr>
+            <tr><th scope="row">현가 (전 / 후)</th><td>더블 위시본 / 세미 트레일링</td><td>더블 위시본 / 더블 위시본</td><td>더블 위시본 / 더블 위시본</td><td class="now">—</td></tr>
+            <tr><th scope="row">최종 감속비</th><td>—</td><td>—</td><td>7.584 : 1</td><td class="now">—</td></tr>
+            <tr><th scope="row">무게 배분 (전 : 후)</th><td>—</td><td>—</td><td>39 : 61</td><td class="now">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="veh-note rv">
+        M26B 제원은 25/26 설계보고서에서 옮겨 채울 예정입니다.
+        2026/27 차량은 M26B를 수정해 만들고, Formula 차량은 새로 설계합니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ 팀 ============================ -->
+  <section id="teams">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">Organization</span>
+        <h2>팀 구성</h2>
+      </div>
+
+      <!-- 임원진은 직책만. 이름·연락처는 개인정보라 넣지 않았습니다. -->
+      <dl class="org rv">
+        <div><dt>대표</dt><dd>회장 · 부회장</dd></div>
+        <div><dt>Baja</dt><dd>PM</dd></div>
+        <div><dt>Formula</dt><dd>PM</dd></div>
+        <div><dt>회계</dt><dd>총무</dd></div>
+        <div><dt>실무</dt><dd>팀장 4인</dd></div>
+      </dl>
+
+      <div class="teams rv">
+        <div class="team">
+          <span class="n">01</span>
+          <h3>기계 1팀</h3>
+          <p class="role">파워트레인</p>
+          <p>모터, 감속기, 구동축, 냉각 라인. Formula 차량에서는 트랙션 컨트롤 로직도 맡습니다.</p>
+        </div>
+        <div class="team">
+          <span class="n">02</span>
+          <h3>기계 2팀</h3>
+          <p class="role">샤시</p>
+          <p>제동·조향·현가 장치. 하드포인트는 차량동역학 시뮬레이션으로 잡습니다.</p>
+        </div>
+        <div class="team">
+          <span class="n">03</span>
+          <h3>기계 3팀</h3>
+          <p class="role">프레임 · 에어로</p>
+          <p>프레임 설계와 용접 지그 제작. Formula 차량은 윙과 사이드포드 CFD를 함께 봅니다.</p>
+        </div>
+        <div class="team">
+          <span class="n">04</span>
+          <h3>전장팀</h3>
+          <p class="role">전자장비</p>
+          <p>배선, PCB, 배터리팩, BMS. 주행 데이터 수집 장비도 이 팀에서 만듭니다.</p>
+        </div>
+      </div>
+
+      <!-- 차량 작업에 들어가지 않는 팀이라 따로 둡니다 -->
+      <div class="team team-wide rv">
+        <span class="n">05</span>
+        <h3>운영·기획팀</h3>
+        <p class="role">운영 · 대외</p>
+        <p>후원사 관리, 예산과 구매, 홍보.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 지금 하는 일 ============================ -->
+  <section id="now">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">In Progress</span>
+        <h2>지금 하는 일</h2>
+        <p>2026/27 시즌 Baja 차량 수정 설계 단계입니다.</p>
+      </div>
+
+      <div class="now-grid rv">
+        <div class="now-col">
+          <h3>기계 1팀</h3>
+          <ul>
+            <li>디프 스프라켓 고정 방법 검토</li>
+            <li>모터–디프 볼트 풀림방지 설계</li>
+            <li>감속비 수정, 25인치 타이어로 변경</li>
+            <li>저속 출발 시 모터 떨림 원인 추적</li>
+          </ul>
+        </div>
+        <div class="now-col">
+          <h3>기계 2팀</h3>
+          <ul>
+            <li>리어 지오메트리 재설계</li>
+            <li>너클 재설계 — 베어링 이탈방지 구조</li>
+            <li>페달축 고정 마운트 설계</li>
+            <li>허브 스페이서 재설계</li>
+          </ul>
+        </div>
+        <div class="now-col">
+          <h3>기계 3팀</h3>
+          <ul>
+            <li>메인 롤 후프 뒤쪽 재설계</li>
+            <li>시트 설계</li>
+            <li>리어 덕트, 백미러 추가</li>
+            <li>카울 정비성 개선</li>
+          </ul>
+        </div>
+        <div class="now-col">
+          <h3>전장팀</h3>
+          <ul>
+            <li>배선·PCB 재설계</li>
+            <li>모터 rpm 제한 해제 — 4,400에서 6,000까지</li>
+            <li>600A 컨택터 선정</li>
+            <li>배터리 3D 프린트 구조 출력 방향 변경</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 기록 ============================ -->
+  <section id="record">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">Record</span>
+        <h2>출전 및 수상</h2>
+      </div>
+
+      <ul class="rec rv">
+        <li>
+          <span class="y">2026</span>
+          <span class="ev"><b>KSAE 대학생 자작자동차대회</b> · Baja 부문 출전</span>
+          <span class="aw">M26B</span>
+        </li>
+        <li>
+          <span class="y">2025</span>
+          <span class="ev"><b>대학생 스마트 e-모빌리티 경진대회</b> · EV 부문</span>
+          <span class="aw win">장려상</span>
+        </li>
+        <li>
+          <span class="y">2024</span>
+          <span class="ev"><b>KSAE 대학생 자작자동차대회</b> · Baja 부문</span>
+          <span class="aw">내구력 완주</span>
+        </li>
+        <li>
+          <span class="y">2024</span>
+          <span class="ev"><b>대학생 스마트 e-모빌리티 경진대회</b> · EV 부문 연합 출전</span>
+          <span class="aw win">베스트 활동상</span>
+        </li>
+        <li>
+          <span class="y">2020</span>
+          <span class="ev"><b>KSAE 대학생 자작자동차대회</b> · Baja 부문</span>
+          <span class="aw win">장려상 · 베스트 팀워크상</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ 후원 ============================ -->
+  <section id="sponsor">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="kicker">Sponsorship</span>
+        <h2>후원</h2>
+      </div>
+
+      <div class="spon">
+        <div class="rv">
+          <p>
+            차 한 대를 한 시즌 굴리는 데 들어가는 항목입니다. 현금 후원뿐 아니라
+            부품·공구·해석 소프트웨어 협찬도 받습니다.
+          </p>
+          <p>
+            문의는 <strong>contact@yonseimecar.com</strong> 으로 주세요.
+            제안서와 직전 시즌 설계·비용 보고서를 보내 드립니다. 비용 보고서에는
+            부품 단가와 인건비 산정까지 들어 있어, 후원이 어디에 쓰이는지 그대로 확인하실 수 있습니다.
+          </p>
+          <ul class="give">
+            <li>차량 리버리 및 팀 유니폼 로고 노출</li>
+            <li>대회 피트 배너 · 현수막 게시</li>
+            <li>대회 현장 초청 및 부스 협의</li>
+            <li>인스타그램 · 유튜브 콘텐츠 노출</li>
+            <li>설계 보고서 및 비용 보고서 크레딧 표기</li>
+          </ul>
+        </div>
+
+        <div class="cost cut rv">
+          <h3>한 시즌에 드는 것</h3>
+          <ul>
+            <li><span>프레임 강관과 절단·용접</span><span>기계 3팀</span></li>
+            <li><span>너클·마운트 CNC 가공</span><span>기계 2팀</span></li>
+            <li><span>모터, 컨트롤러, 감속기</span><span>기계 1팀</span></li>
+            <li><span>배터리 셀, BMS, 600A 컨택터</span><span>전장팀</span></li>
+            <li><span>PCB 발주 및 하네스 자재</span><span>전장팀</span></li>
+            <li><span>오프로드 타이어 · 휠</span><span>기계 2팀</span></li>
+            <li><span>대회 참가비</span><span>50만 원</span></li>
+            <li><span>차량 운송 및 원정 숙박</span><span>군산 · 영광</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 모집 ============================ -->
+  <section id="join">
+    <div class="wrap">
+      <div class="join cut rv">
+        <div>
+          <span class="kicker">Recruitment</span>
+          <h2>부원 모집</h2>
+          <p class="lead">
+            차량 제작 경험은 필요하지 않습니다. 설계, 가공, 전장, 운영 가운데 관심 있는 팀을
+            골라 지원하면 됩니다. 모집 공고는 매 학기 초 인스타그램에 올립니다.
+          </p>
+          <div class="join-cta">
+            <a class="btn btn-fill" href="https://www.instagram.com/yonseimecar/" target="_blank" rel="noopener">@yonseimecar</a>
+            <a class="btn btn-line" href="mailto:contact@yonseimecar.com">메일 보내기</a>
+          </div>
+        </div>
+
+        <dl>
+          <div><dt>모집 시기</dt><dd>매 학기 초 (3월 · 9월)</dd></div>
+          <div><dt>지원 자격</dt><dd>연세대학교 재학생, 전공 무관</dd></div>
+          <div><dt>모집 팀</dt><dd>기계 1·2·3팀, 전장팀, 운영·기획팀</dd></div>
+          <div><dt>동아리방</dt><dd>제1공학관 A116호</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ 푸터 ============================ -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-g">
+      <div>
+        <svg class="wm" viewBox="0 0 1396 264" aria-hidden="true"><use href="#mecar-wordmark"/></svg>
+        <p style="max-width:24em;">
+          연세대학교 자작자동차 동아리. 설계와 제작을 부원들이 직접 하고,
+          KSAE 대학생 자작자동차대회에 나갑니다.
+        </p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:contact@yonseimecar.com">contact@yonseimecar.com</a>
+        <a href="https://www.instagram.com/yonseimecar/" target="_blank" rel="noopener">Instagram @yonseimecar</a>
+        <p>연세대학교 제1공학관 A116호</p>
+      </div>
+
+      <div>
+        <h4>Link</h4>
+        <a href="https://www.ksae.org/jajak/" target="_blank" rel="noopener">KSAE 대학생 자작자동차대회</a>
+        <a href="https://dnf.luftaquila.io/" target="_blank" rel="noopener">한국 대학생 자작자동차포럼</a>
+        <a href="#join">부원 모집</a>
+      </div>
+    </div>
+
+    <div class="ftr-btm">
+      <span>© MECAR — YUNDAI MOTORS RACING</span>
+      <span>DRAFT REV 2.0 · 2026 / 27</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
