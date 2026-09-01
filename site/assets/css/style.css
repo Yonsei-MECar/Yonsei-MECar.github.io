@@ -410,21 +410,6 @@ a {
   filter: saturate(0.92) contrast(1.04);
 }
 
-.hero-media figcaption {
-  position: absolute;
-  z-index: 1;
-  right: 24px;
-  bottom: 20px;
-  margin: 0;
-  padding: 7px 10px;
-  background: rgba(9, 9, 10, 0.76);
-  color: rgba(255, 255, 255, 0.76);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
 .hero-eyebrow {
   margin-bottom: 20px;
   color: #ff756e;
@@ -506,23 +491,6 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.about-figure figcaption {
-  display: flex;
-  gap: 18px;
-  margin-top: 16px;
-  color: var(--ink-muted);
-  font-size: 0.86rem;
-}
-
-.about-figure figcaption span {
-  flex: none;
-  color: #ff6c65;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
 }
 
 /* Projects --------------------------------------------------------------- */
@@ -811,29 +779,9 @@ a {
   object-position: center 46%;
 }
 
-.gallery-item::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(4, 4, 5, 0.82), transparent 42%);
-  content: "";
-  pointer-events: none;
-}
-
 .gallery-item:hover img {
   filter: saturate(1.08);
   transform: scale(1.025);
-}
-
-.gallery-item figcaption {
-  position: absolute;
-  z-index: 2;
-  right: 24px;
-  bottom: 22px;
-  left: 24px;
-  display: block;
-  color: white;
-  font-weight: 750;
-  line-height: 1.45;
 }
 
 /* Record ----------------------------------------------------------------- */
@@ -1311,11 +1259,6 @@ a.contact-card:hover {
     min-height: 270px;
   }
 
-  .hero-media figcaption {
-    right: 14px;
-    bottom: 12px;
-  }
-
   .hero-actions,
   .hero-actions .button,
   .join-actions,
@@ -1326,15 +1269,6 @@ a.contact-card:hover {
   .section-heading h2,
   .partner-copy h2 {
     font-size: clamp(2.25rem, 10vw, 3.5rem);
-  }
-
-  .about-figure figcaption {
-    display: block;
-  }
-
-  .about-figure figcaption span {
-    display: block;
-    margin-bottom: 6px;
   }
 
   .project-card {
