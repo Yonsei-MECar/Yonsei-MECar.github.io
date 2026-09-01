@@ -7,7 +7,7 @@
 | `logo-mark.svg` | 헤더용 M 심벌 | 공식 로고 원본의 벡터 자산 |
 | `logo-wordmark.svg` | MECar 워드마크 | 승인 워드마크 원본의 벡터 자산 |
 | `hero-baja-2026.jpg` | 히어로·Open Graph | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
-| `paddock-baja-2026.jpg` | 패독 정비 장면 | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
+| `vehicle-check-baja-2026.jpg` | 대회 출발 전 차량 점검 장면 | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
 | `team-baja-2026.jpg` | 대회 현장 단체사진 | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
 | `data-baja-2026.jpg` | 노트북·장비 확인 장면 | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
 | `race-baja-2026.jpg` | 다른 차량과 함께 달리는 장면 | 팀 공유 드라이브의 2026 KSAE Baja 원본 |

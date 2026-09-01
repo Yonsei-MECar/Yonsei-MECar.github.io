@@ -105,10 +105,8 @@ a {
 }
 
 .hero-eyebrow,
-.project-topline,
 .team-role,
-.contact-card > span,
-.gallery-item figcaption span {
+.contact-card > span {
   margin: 0;
   color: #ff6c65;
   font-family: var(--font-mono);
@@ -535,7 +533,7 @@ a {
 
 .project-card {
   position: relative;
-  min-height: 620px;
+  min-height: 580px;
   padding: clamp(24px, 4vw, 42px);
   border: 1px solid var(--line);
   overflow: hidden;
@@ -561,11 +559,24 @@ a {
   gap: 18px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--line);
-  color: var(--ink-muted);
+}
+
+.project-topline h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.75rem, 3vw, 2.45rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
 }
 
 .project-topline .status {
-  color: #ff6c65;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.25;
   text-align: right;
 }
 
@@ -573,22 +584,24 @@ a {
   position: relative;
   z-index: 2;
   display: flex;
-  min-height: 515px;
+  min-height: 475px;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: clamp(44px, 6vw, 70px);
+  padding-top: clamp(36px, 5vw, 54px);
 }
 
-.project-body h3 {
-  margin: 0;
-  font-size: clamp(2rem, 4.4vw, 3.8rem);
-  line-height: 1.08;
-  letter-spacing: -0.05em;
+.project-body .project-name {
+  margin: 0 0 18px;
+  color: var(--ink);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
-.project-body > p {
+.project-body > p:not(.project-name) {
   max-width: 540px;
-  margin: 24px 0 34px;
+  margin: 0 0 34px;
   color: var(--ink-soft);
 }
 
@@ -695,7 +708,7 @@ a {
   grid-template-columns: 0.72fr 1.28fr;
   align-items: center;
   gap: clamp(36px, 8vw, 100px);
-  margin-top: 20px;
+  margin-bottom: clamp(28px, 4vw, 48px);
   padding: clamp(28px, 5vw, 52px);
   border: 1px solid var(--line);
   background: linear-gradient(100deg, rgba(219, 44, 39, 0.13), transparent 60%);
@@ -811,15 +824,10 @@ a {
   right: 24px;
   bottom: 22px;
   left: 24px;
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
+  display: block;
   color: white;
   font-weight: 750;
-}
-
-.gallery-item figcaption span {
-  color: #ff756e;
+  line-height: 1.45;
 }
 
 /* Record ----------------------------------------------------------------- */
