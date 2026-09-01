@@ -864,7 +864,7 @@ a {
 
 .record-list li {
   display: grid;
-  grid-template-columns: 104px 1fr;
+  grid-template-columns: 120px minmax(0, 1fr);
   gap: 24px;
   padding: clamp(26px, 4vw, 42px) 0;
   border-bottom: 1px solid var(--line);
@@ -876,20 +876,23 @@ a {
   font-size: clamp(1.6rem, 3vw, 2.5rem);
   font-weight: 900;
   line-height: 1;
+  white-space: nowrap;
 }
 
-.record-list strong,
-.record-list span {
-  display: block;
+.record-entry {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
 }
 
 .record-list strong {
+  display: block;
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   line-height: 1.4;
 }
 
-.record-list span {
-  margin-top: 8px;
+.record-entry p {
+  margin: 0;
   color: var(--ink-muted);
 }
 
@@ -1386,7 +1389,7 @@ a.contact-card:hover {
   }
 
   .record-list li {
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 80px minmax(0, 1fr);
     gap: 16px;
   }
 
