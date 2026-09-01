@@ -1,81 +1,41 @@
-/* ==========================================================================
-   tokens.css — 디자인 토큰
-
-   색은 동아리 로고에서 뽑았습니다.
-     빨강 #DB2C27 — 메카 로고.png 에서 그대로 추출한 값
-   로고가 검정 바탕에 빨강이라 이 사이트는 다크가 기본입니다.
-   라이트 모드는 아래쪽에서 뒤집습니다.
-   ========================================================================== */
-
 :root {
-  /* --- 표면 (다크가 기본) --- */
-  --bg:       #0B0B0C;
-  --panel:    #141416;
-  --panel-2:  #1C1C1F;
+  color-scheme: dark;
 
-  /* --- 잉크 (무채색에 살짝 붉은 기를 섞어 액센트와 붙게) --- */
-  --ink:      #F4F3F3;
-  --ink-2:    #A8A3A4;
-  --ink-3:    #6F6A6C;
+  --bg: #09090a;
+  --bg-soft: #111113;
+  --panel: #171719;
+  --panel-raised: #1e1e21;
+  --ink: #f7f4f2;
+  --ink-soft: #c3bdba;
+  --ink-muted: #8c8785;
+  --line: rgba(247, 244, 242, 0.12);
+  --line-strong: rgba(247, 244, 242, 0.24);
 
-  /* --- 선 --- */
-  --line:     rgba(244, 243, 243, 0.11);
-  --line-2:   rgba(244, 243, 243, 0.24);
+  --red: #db2c27;
+  --red-bright: #f0443e;
+  --red-deep: #9f1f1b;
+  --on-red: #ffffff;
+  --sand: #d8c6ac;
 
-  /* --- 브랜드 --- */
-  --red:      #DB2C27;
-  --red-hi:   #F04039;
-  --on-red:   #FFFFFF;
+  --font-sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  --font-display: "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
-  /* --- 차트 (검증된 카테고리 슬롯 1·2) --- */
-  --series-a: #3987e5;
-  --series-b: #d95926;
+  --wrap: 1240px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --section: clamp(88px, 11vw, 156px);
+  --radius: 24px;
+  --cut: 22px;
+  --header-h: 74px;
 
-  /* --- 서체 --- */
-  --f-disp: 'Chakra Petch', 'Arial Narrow', sans-serif;   /* 로고처럼 각진 면이 있는 서체 */
-  --f-kr:   'IBM Plex Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-  --f-mono: 'IBM Plex Mono', Consolas, monospace;
-
-  /* --- 레이아웃 --- */
-  --wrap: 1200px;
-  --cut: 14px;              /* 카드 모서리 사선 크기. 로고의 45° 절단면과 같은 각도 */
+  --shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* --------------------------------------------------------------------------
-   라이트 모드
-   OS 설정용(미디어 쿼리)과 수동 토글용([data-theme]) 두 벌이 필요합니다.
-   -------------------------------------------------------------------------- */
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg:       #F7F6F6;
-    --panel:    #FFFFFF;
-    --panel-2:  #EFECEC;
-    --ink:      #131315;
-    --ink-2:    #55504F;
-    --ink-3:    #8A8382;
-    --line:     rgba(19, 19, 21, 0.12);
-    --line-2:   rgba(19, 19, 21, 0.26);
-    --red:      #C4231E;     /* 흰 바탕에서 대비를 맞추려 한 단계 어둡게 */
-    --red-hi:   #A81A16;
-    --on-red:   #FFFFFF;
-    --series-a: #2a78d6;
-    --series-b: #eb6834;
+@media (max-width: 760px) {
+  :root {
+    --header-h: 64px;
+    --radius: 18px;
+    --cut: 16px;
   }
-}
-
-:root[data-theme="light"] {
-  --bg:       #F7F6F6;
-  --panel:    #FFFFFF;
-  --panel-2:  #EFECEC;
-  --ink:      #131315;
-  --ink-2:    #55504F;
-  --ink-3:    #8A8382;
-  --line:     rgba(19, 19, 21, 0.12);
-  --line-2:   rgba(19, 19, 21, 0.26);
-  --red:      #C4231E;
-  --red-hi:   #A81A16;
-  --on-red:   #FFFFFF;
-  --series-a: #2a78d6;
-  --series-b: #eb6834;
 }

@@ -1,148 +1,102 @@
 # MECar 홈페이지
 
-**2026-08 ~ · 박현진 / 기계 1팀장 (26-27)**
+연세대학교 자작자동차 동아리 MECar의 공식 정적 홈페이지입니다. `main` 브랜치의 `site/` 폴더가 GitHub Pages로 자동 배포됩니다.
 
-동아리 공식 홈페이지 초안. `yonseimecar.com` 도메인에 올릴 목적으로 만들었습니다.
-현재 상태는 **검토용 초안(REV 2.0)** 이고, 사진이 아직 없습니다.
+- 배포 주소: <https://yonsei-mecar.github.io/>
+- 현재 콘텐츠 기준: 2026/27 시즌, 2026-09-01 확인
+- 빌드 도구: 없음 — HTML, CSS, JavaScript만 사용
 
-`main` 브랜치에 반영된 `site/`는 GitHub Actions를 통해
-`https://yonsei-mecar.github.io/`에 자동 배포됩니다. 커스텀 도메인은 DNS와
-수신 메일 주소를 별도로 검증한 뒤 연결합니다.
+## 이번 개편에 반영한 내용
 
-디자인은 동아리 로고에서 뽑았습니다 — 검정 바탕에 빨강 `#DB2C27`,
-로고의 45° 절단면을 카드 모서리와 라벨에 반복해서 씁니다.
+- 2026/27 운영진과 5개 팀의 역할·팀장 정보
+- Baja M26B 개선과 2027 e-Formula 첫 출전 준비
+- 공식 연락처 `mecarteam@gmail.com`과 Instagram `@yonseimecar`
+- 팀 노션 갤러리의 공개 선별 사진
+- 공식 SVG 로고와 워드마크
+- 반응형 메뉴, 키보드 탐색, 모션 최소화 설정, 명도 대비 개선
+- Open Graph, canonical, Organization 구조화 데이터, `robots.txt`, `sitemap.xml`
+- 배포 전 내부 링크·자산·접근성 기본 항목 자동 검사
 
----
+개인 휴대전화와 개인 이메일은 공개하지 않습니다. 운영진은 이름과 직책만 표시하며 모든 외부 문의는 공식 메일로 받습니다.
 
-## 바로 열어보기
+## 로컬에서 보기
 
-빌드 과정이 없습니다. `site/index.html` 을 브라우저로 열면 그대로 보입니다.
-
-다만 폰트와 일부 경로 때문에 **로컬 서버로 띄우는 쪽을 권합니다.**
+저장소 루트에서 다음 명령을 실행합니다.
 
 ```powershell
-cd Projects\Club-Website\site
-python -m http.server 8000
-# 브라우저에서 http://localhost:8000
+python -m http.server 8000 --directory site
 ```
 
----
+브라우저에서 <http://localhost:8000>을 엽니다. 파일을 직접 열어도 기본 내용은 보이지만, 로컬 서버가 실제 배포 경로와 더 가깝습니다.
+
+## 배포 전 확인
+
+```powershell
+python check-site.py
+node --check site/assets/js/main.js
+python build-single.py
+git diff --check
+```
+
+`check-site.py`는 다음 항목을 별도 패키지 없이 검사합니다.
+
+- 중복 ID와 끊어진 내부 앵커
+- 존재하지 않는 CSS·JavaScript·이미지 경로
+- 이미지 대체 텍스트와 고유 크기
+- 새 창 링크의 `rel="noopener"`
+- H1 개수와 헤딩 단계
+- 임시 문구, 과거 미확인 메일, 인코딩 손상
+
+같은 검사는 GitHub Pages 배포 작업에서도 먼저 실행됩니다.
 
 ## 폴더 구조
 
-```
+```text
 Club-Website/
-├─ README.md            ← 지금 보는 파일
-├─ build-single.py      ← CSS·JS를 index.html 안으로 합쳐 파일 1개로 (아래 참고)
-├─ dist/                ← build-single.py 결과물. 손대지 마세요
-└─ site/                ← 이 폴더 전체를 그대로 올리면 배포 끝
-   ├─ index.html        ← 페이지 내용. 글자 고칠 일은 대부분 여기
-   ├─ favicon.svg       ← 브라우저 탭 아이콘
+├─ .github/workflows/pages.yml  # 검사 후 GitHub Pages 배포
+├─ check-site.py                # 정적 사이트 사전 검사
+├─ build-single.py              # CSS·JS·파비콘을 HTML에 포함하는 보조 도구
+└─ site/
+   ├─ index.html                # 콘텐츠와 문서 구조
+   ├─ robots.txt
+   ├─ sitemap.xml
+   ├─ favicon.svg
    └─ assets/
       ├─ css/
-      │  ├─ tokens.css  ← 색·폰트·간격. 톤 바꾸려면 여기만
-      │  └─ style.css   ← 나머지 스타일 (목차 주석 있음)
-      ├─ js/
-      │  └─ main.js     ← 모바일 메뉴 + 스크롤 등장. 라이브러리 없음
-      └─ img/
-         ├─ logo-mark.svg      ← 빨간 M 마크 (벡터)
-         ├─ logo-wordmark.svg  ← MECAR 워드마크 (벡터)
-         └─ README.md          ← 사진 넣는 법
+      │  ├─ tokens.css          # 색상·서체·간격 토큰
+      │  └─ style.css           # 레이아웃과 반응형 스타일
+      ├─ img/                   # 승인 로고와 공개 선별 사진
+      └─ js/main.js             # 메뉴·스크롤·현재 섹션 표시
 ```
 
----
+## 콘텐츠 기준
 
-## 로고
+홈페이지 문구는 팀 노션의 다음 페이지를 기준으로 정리했습니다.
 
-동아리 실물 파일을 벡터로 딴 것입니다. 원본은 래스터(PNG)라 확대하면 깨져서,
-윤곽선을 따서 SVG 패스로 만들었습니다.
+- `MECar` / `About Us!`
+- `2026/27 활동`
+- 기계 1·2·3팀, 전장팀, 운영기획팀의 26/27 페이지
+- `26/27 임원진 명단`
+- Formula·Baja 개발일정
+- `갤러리`
 
-| 웹 에셋 | 출처 |
-|---|---|
-| `logo-mark.svg` | 동아리 승인 로고 원본 |
-| `logo-wordmark.svg` | 동아리 승인 워드마크 원본 |
+세부 개발 일정은 금방 낡기 때문에 공개 홈페이지에는 방향과 핵심 작업만 요약했습니다. 성적, 제원, 후원사 로고는 공식 확인 전까지 추정해서 넣지 않습니다.
 
-브랜드 빨강 `#DB2C27` 은 원본 PNG에서 그대로 뽑은 값입니다.
+## 사진과 로고
 
-두 로고 모두 `fill="currentColor"` 라서 **부모의 `color` 값을 그대로 받습니다.**
-다크/라이트 어느 쪽이든 알아서 맞고, 색을 바꾸고 싶으면 감싼 요소의 `color` 만 바꾸면 됩니다.
-`index.html` 맨 위 `<symbol>` 에 넣어두고 `<use href="#mecar-mark">` 로 갖다 씁니다.
+- `logo-mark.svg`, `logo-wordmark.svg`: 승인된 동아리 로고 원본을 벡터화한 자산
+- `*-2024.jpg`: 팀 노션 갤러리의 KSAE Baja 2024 공개 선별본
+- 사진에는 `width`, `height`, 설명형 `alt`를 지정하고, 첫 화면을 제외한 사진은 지연 로딩합니다.
 
----
-
-## 자주 고칠 것
-
-| 고칠 내용 | 위치 |
-|---|---|
-| 문구·수상 기록·일정 | `site/index.html` (섹션마다 주석 있음) |
-| 색상 / 폰트 | `site/assets/css/tokens.css` |
-| 모서리 사선 크기 | `tokens.css` 의 `--cut` |
-| 카톡 링크 미리보기 이미지 | `index.html` 상단 `og:image` 주석 해제 후 경로 지정 |
-
-### 한글에 자간 넣지 말 것
-
-라틴 대문자 라벨(`ABOUT`, `IN PROGRESS`)에는 넓은 자간이 어울리지만
-**한글에 같은 자간을 주면 "주 행  종 목" 처럼 벌어져서 조잡해 보입니다.**
-한글 라벨은 자간 없이 `font-weight` 로만 구분하세요.
-
-### 파일 하나로 합치기
-
-후원사에 메일로 보내거나 파일 하나만 올릴 수 있는 곳에 쓸 때는:
-
-```powershell
-python build-single.py     # → dist/mecar-onefile.html (약 57KB)
-```
-
-CSS·JS·파비콘이 전부 안으로 들어가 그 파일 하나만 열어도 똑같이 보입니다.
-**평소 수정은 `site/` 에서 하고**, 필요할 때만 이걸 다시 돌리세요.
-
-### 다크 모드
-
-로고가 검정 바탕에 빨강이라 **다크가 기본**이고, 라이트는 OS 설정을 따라 뒤집힙니다.
-색을 새로 넣을 때는 **반드시 `tokens.css` 의 다크/라이트 두 곳 모두**에 정의하세요.
-한쪽에만 넣으면 다른 테마에서 글씨가 안 보입니다.
-
----
-
-## 아직 안 채운 것
-
-- [ ] **사진 전부** — 차량, 작업 현장, 대회, 팀 단체사진 중 공개 동의를 받은 사진만 선별
-- [ ] **후원사 로고** — 받는 대로 후원 섹션에 추가
-- [ ] **M26B 제원** — 25/26 설계보고서(Notion)에서 옮겨 차량 표 2026 열 채우기
-- [ ] **2026 BSK 성적** — 출전만 적어둠. 결과 확인 후 갱신
-- [ ] `contact@yonseimecar.com` 이 실제로 받는 주소가 맞는지 확인
-      (틀리면 `index.html` 4곳 + 이 파일 전부 치환)
-
----
-
-## 넣은 내용의 출처
-
-지어낸 수치가 없도록 전부 실제 자료에서 가져왔습니다.
-
-| 내용 | 출처 |
-|---|---|
-| 로고, 브랜드 색 | 동아리 승인 로고 원본 |
-| 차량 표 (이글호 / ARTEMIS GT, 제원 전체) | 2024·2025 공식 설계보고서 |
-| **설계 개선 4건** (브레이크 암, 언더스티어, 기어박스 40.75→11.80kg, 킬스위치) | 2025 설계보고서 「기존 차량 검토 및 설계 목표」 |
-| 지금 하는 일 | 동아리 내부 BAJA 개발 일정 |
-| Formula 준비 현황 | 동아리 내부 Formula 개발 일정 |
-| 팀 구성 5팀, 임원진 직책 | 동아리 내부 조직 자료 |
-| 수상 기록 | `mecar.notion.site` About Us |
-| 대회 일정·장소·부문 명칭·배점 | KSAE 대회 안내 및 2026 공식 규정 |
-
-M26B(2026 차량명)는 25/26 설계보고서가 Notion에만 있어서
-확인을 못 했고, 팀장 확인으로 넣었습니다.
-
-> **임원진 이름·개인 연락처는 일부러 넣지 않았습니다.** 공개 웹사이트에 올라가는 페이지라
-> 직책만 표기했습니다. 이름을 넣으려면 `index.html` 의 `.org` 블록을 고치세요.
-
----
+사진 추가 전 공개 동의와 사용 권한을 확인하세요. 자세한 규칙은 [이미지 안내](site/assets/img/README.md)에 있습니다.
 
 ## 배포
 
-`main` 브랜치에 푸시하면 `.github/workflows/pages.yml`이 `site/`를 GitHub Pages에
-자동 배포합니다. 기본 주소는 `https://yonsei-mecar.github.io/`입니다.
+`main` 브랜치에 반영되면 `.github/workflows/pages.yml`이 다음 순서로 동작합니다.
 
-`yonseimecar.com` 연결은 DNS와 메일 수신을 함께 점검한 뒤 별도 변경으로 진행합니다.
-서버 사이드 코드가 없어서 필요하면 Netlify나 Cloudflare Pages에도 같은 `site/`를
-배포할 수 있습니다.
+1. 정적 사이트 사전 검사
+2. JavaScript 문법 및 보조 빌드 확인
+3. `site/` 업로드
+4. GitHub Pages 배포
+
+커스텀 도메인은 DNS, HTTPS, 메일 수신을 모두 확인한 뒤 canonical·OG URL·sitemap을 함께 변경해야 합니다.

@@ -1,65 +1,155 @@
-/* ==========================================================================
-   main.js — MECAR 홈페이지
-   하는 일은 두 가지뿐입니다.
-     1) 모바일 햄버거 메뉴 열고 닫기
-     2) 스크롤해서 화면에 들어온 요소에 .on 을 붙여 서서히 나타나게 하기
-   외부 라이브러리는 쓰지 않습니다.
-   ========================================================================== */
-
 (function () {
   'use strict';
 
-  /* ----- 1. 모바일 메뉴 ----- */
+  var root = document.documentElement;
+  var header = document.getElementById('site-header');
+  var menuButton = document.getElementById('menu-button');
+  var nav = document.getElementById('site-nav');
+  var main = document.getElementById('main');
+  var footer = document.querySelector('.site-footer');
+  var mobile = window.matchMedia('(max-width: 900px)');
+  var lastFocused = null;
 
-  var hdr    = document.getElementById('hdr');
-  var burger = document.getElementById('burger');
-  var nav    = document.getElementById('nav');
+  root.classList.add('nav-ready');
 
-  if (hdr && burger && nav) {
-    burger.addEventListener('click', function () {
-      var open = hdr.classList.toggle('open');
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
-    });
-
-    // 메뉴 항목을 누르면 닫습니다
-    nav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', closeNav);
-    });
-
-    // Esc 로도 닫힙니다
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && hdr.classList.contains('open')) {
-        closeNav();
-        burger.focus();
+  function setPageInert(value) {
+    [main, footer].forEach(function (element) {
+      if (!element) return;
+      if (value) {
+        element.setAttribute('inert', '');
+        element.setAttribute('aria-hidden', 'true');
+      } else {
+        element.removeAttribute('inert');
+        element.removeAttribute('aria-hidden');
       }
     });
   }
 
-  function closeNav() {
-    hdr.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', '메뉴 열기');
+  function openMenu() {
+    if (!header || !menuButton || !nav || !mobile.matches) return;
+    lastFocused = document.activeElement;
+    header.classList.add('menu-open');
+    document.body.classList.add('menu-locked');
+    menuButton.setAttribute('aria-expanded', 'true');
+    menuButton.setAttribute('aria-label', '메뉴 닫기');
+    setPageInert(true);
+
+    var firstLink = nav.querySelector('a');
+    if (firstLink) window.setTimeout(function () { firstLink.focus(); }, 0);
   }
 
-  /* ----- 2. 스크롤 등장 ----- */
+  function closeMenu(options) {
+    if (!header || !menuButton) return;
+    var restoreFocus = !options || options.restoreFocus !== false;
+    header.classList.remove('menu-open');
+    document.body.classList.remove('menu-locked');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', '메뉴 열기');
+    setPageInert(false);
 
-  var items = document.querySelectorAll('.rv');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // 움직임 최소화 설정이 켜져 있거나 구형 브라우저면 그냥 다 보여줍니다
-  if (reduce || !('IntersectionObserver' in window)) {
-    items.forEach(function (el) { el.classList.add('on'); });
-    return;
+    if (restoreFocus && lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus();
+    }
+    lastFocused = null;
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('on');
-      io.unobserve(entry.target);   // 한 번 나타나면 더 볼 필요 없음
+  function menuIsOpen() {
+    return Boolean(header && header.classList.contains('menu-open'));
+  }
+
+  if (header && menuButton && nav) {
+    menuButton.addEventListener('click', function () {
+      if (menuIsOpen()) closeMenu();
+      else openMenu();
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  items.forEach(function (el) { io.observe(el); });
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        closeMenu({ restoreFocus: false });
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (!menuIsOpen()) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeMenu();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      var focusable = [menuButton].concat(Array.from(nav.querySelectorAll('a')));
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    mobile.addEventListener('change', function (event) {
+      if (!event.matches) closeMenu({ restoreFocus: false });
+    });
+  }
+
+  function updateHeader() {
+    if (!header) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 24);
+  }
+
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealItems = Array.from(document.querySelectorAll('.reveal'));
+
+  if (!reduceMotion && 'IntersectionObserver' in window && revealItems.length) {
+    revealItems.forEach(function (element) {
+      if (element.getBoundingClientRect().top < window.innerHeight * 0.9) {
+        element.classList.add('is-visible');
+      }
+    });
+    root.classList.add('reveal-ready');
+
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    revealItems.forEach(function (element) {
+      if (!element.classList.contains('is-visible')) revealObserver.observe(element);
+    });
+  }
+
+  var navLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
+  var sections = navLinks.map(function (link) {
+    return document.querySelector(link.getAttribute('href'));
+  }).filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function (link) {
+          var active = link.getAttribute('href') === '#' + entry.target.id;
+          if (active) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-42% 0px -52% 0px', threshold: 0 });
+
+    sections.forEach(function (section) { sectionObserver.observe(section); });
+  }
+
+  document.querySelectorAll('[data-year]').forEach(function (element) {
+    element.textContent = String(new Date().getFullYear());
+  });
 })();

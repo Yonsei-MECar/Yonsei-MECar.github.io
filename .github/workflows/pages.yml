@@ -23,6 +23,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+      - name: Validate site
+        run: |
+          python check-site.py
+          python build-single.py
+          node --check site/assets/js/main.js
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
