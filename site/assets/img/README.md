@@ -4,7 +4,7 @@
 
 | 파일 | 용도 | 출처 |
 |---|---|---|
-| `logo-mark.svg` | 헤더·장식용 M 심벌 | 승인 로고 원본의 벡터 자산 |
+| `logo-mark.svg` | 헤더용 M 심벌 | 공식 로고 원본의 벡터 자산 |
 | `logo-wordmark.svg` | MECar 워드마크 | 승인 워드마크 원본의 벡터 자산 |
 | `hero-baja-2024.jpg` | 히어로·Open Graph | 팀 노션 갤러리 |
 | `team-baja-2024.jpg` | 팀 단체 장면 | 팀 노션 갤러리 |
