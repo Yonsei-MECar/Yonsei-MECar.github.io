@@ -52,7 +52,7 @@ git diff --check
 ## 폴더 구조
 
 ```text
-Club-Website/
+Yonsei-MECar.github.io/
 ├─ .github/workflows/pages.yml  # 검사 후 GitHub Pages 배포
 ├─ check-site.py                # 정적 사이트 사전 검사
 ├─ build-single.py              # CSS·JS·파비콘을 HTML에 포함하는 보조 도구
