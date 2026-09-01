@@ -38,6 +38,10 @@ python build-single.py
 git diff --check
 ```
 
+`build-single.py`는 메일 첨부나 별도 전달에 쓸 단일 HTML을
+`dist/mecar-onefile.html`에 만듭니다. `dist/`는 생성물이라 Git에서 추적하지
+않습니다.
+
 `check-site.py`는 다음 항목을 별도 패키지 없이 검사합니다.
 
 - 중복 ID와 끊어진 내부 앵커
