@@ -38,7 +38,7 @@ def main() -> int:
         href = m.group(1)
         if href.startswith("http"):          # 구글 폰트는 그대로 둡니다
             return m.group(0)
-        css = read(href)
+        css = read(href.split("?", 1)[0])
         return f"<style>\n/* ---- {href} ---- */\n{css}\n</style>"
 
     html = re.sub(
