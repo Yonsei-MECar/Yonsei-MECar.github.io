@@ -78,35 +78,44 @@ def main() -> int:
         print(f"ERROR: missing {INDEX}", file=sys.stderr)
         return 1
 
-    html = INDEX.read_text(encoding="utf-8")
-    parser = SiteParser()
-    parser.feed(html)
-    parser.close()
-
-    errors.extend(parser.errors)
-    errors.extend(f"Duplicate id: {element_id}" for element_id in sorted(parser.duplicate_ids))
-    errors.extend(
-        f"Missing internal anchor target: #{fragment}"
-        for fragment in sorted(set(parser.fragments) - parser.ids)
-    )
-
-    for reference in sorted(set(parser.local_refs)):
-        target = SITE / reference
-        if not target.is_file():
-            errors.append(f"Missing local asset: {reference}")
-
-    if parser.h1_count != 1:
-        errors.append(f"Expected exactly one h1, found {parser.h1_count}.")
-
     forbidden = {
         "contact@yonseimecar.com": "unverified legacy email",
         "DRAFT REV": "draft marker",
         "여기에 사진": "Notion placeholder",
         "�": "replacement character / encoding damage",
     }
-    for needle, label in forbidden.items():
-        if needle in html:
-            errors.append(f"Found {label}: {needle!r}")
+    total_ids = 0
+    total_images = 0
+    all_refs: set[str] = set()
+    for page in sorted(SITE.glob("*.html")):
+        html = page.read_text(encoding="utf-8")
+        parser = SiteParser()
+        parser.feed(html)
+        parser.close()
+
+        page_errors = list(parser.errors)
+        page_errors.extend(f"Duplicate id: {element_id}" for element_id in sorted(parser.duplicate_ids))
+        page_errors.extend(
+            f"Missing internal anchor target: #{fragment}"
+            for fragment in sorted(set(parser.fragments) - parser.ids)
+        )
+
+        for reference in sorted(set(parser.local_refs)):
+            target = page.parent / reference
+            if not target.is_file():
+                page_errors.append(f"Missing local asset or page: {reference}")
+            all_refs.add(reference)
+
+        if parser.h1_count != 1:
+            page_errors.append(f"Expected exactly one h1, found {parser.h1_count}.")
+
+        for needle, label in forbidden.items():
+            if needle in html:
+                page_errors.append(f"Found {label}: {needle!r}")
+
+        errors.extend(f"{page.name}: {error}" for error in page_errors)
+        total_ids += len(parser.ids)
+        total_images += parser.image_count
 
     if errors:
         print("Site preflight failed:", file=sys.stderr)
@@ -115,8 +124,8 @@ def main() -> int:
         return 1
 
     print(
-        f"Site preflight passed: {len(parser.ids)} ids, "
-        f"{parser.image_count} images, {len(set(parser.local_refs))} local assets."
+        f"Site preflight passed: {len(list(SITE.glob('*.html')))} pages, "
+        f"{total_ids} ids, {total_images} images, {len(all_refs)} local references."
     )
     return 0
 

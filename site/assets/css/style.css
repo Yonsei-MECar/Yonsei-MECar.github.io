@@ -122,6 +122,22 @@ a {
   margin-bottom: clamp(42px, 6vw, 78px);
 }
 
+.section-kicker {
+  margin: 0 0 18px;
+  color: #ff756e;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-heading > p:not(.section-kicker) {
+  max-width: 650px;
+  margin: 20px 0 0;
+  color: var(--ink-soft);
+}
+
 .section-heading h2,
 .partner-copy h2 {
   margin: 0;
@@ -238,9 +254,8 @@ a {
 
 .brand {
   display: flex;
-  min-width: 172px;
+  min-width: 148px;
   align-items: center;
-  gap: 12px;
   color: var(--ink);
 }
 
@@ -252,8 +267,8 @@ a {
 }
 
 .brand-wordmark {
-  width: 116px;
-  height: 23px;
+  width: 136px;
+  height: 26px;
   background: currentColor;
 }
 
@@ -507,7 +522,7 @@ a {
 
 .project-card {
   position: relative;
-  min-height: 580px;
+  min-height: 385px;
   padding: clamp(24px, 4vw, 42px);
   border: 1px solid var(--line);
   overflow: hidden;
@@ -558,7 +573,7 @@ a {
   position: relative;
   z-index: 2;
   display: flex;
-  min-height: 475px;
+  min-height: 260px;
   flex-direction: column;
   align-items: flex-start;
   padding-top: clamp(36px, 5vw, 54px);
@@ -614,7 +629,7 @@ a {
 .team-card {
   position: relative;
   display: flex;
-  min-height: 320px;
+  min-height: 260px;
   flex-direction: column;
   padding: clamp(24px, 3.5vw, 36px);
   border: 1px solid var(--line);
@@ -744,6 +759,87 @@ a {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+}
+
+.gallery-preview {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gallery-more {
+  display: inline-flex;
+  margin-top: 28px;
+}
+
+/* Gallery page ------------------------------------------------------------ */
+.subpage-hero {
+  padding-block: clamp(80px, 11vw, 150px);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(120deg, rgba(219, 44, 39, 0.14), transparent 55%), var(--bg);
+}
+
+.subpage-hero h1 {
+  max-width: 940px;
+  margin: 0;
+  font-size: clamp(3.2rem, 8vw, 7rem);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.subpage-hero p:not(.hero-eyebrow) {
+  max-width: 680px;
+  margin: 28px 0;
+  color: var(--ink-soft);
+}
+
+.gallery-page {
+  padding-bottom: clamp(70px, 8vw, 110px);
+}
+
+.gallery-page-secondary {
+  padding-top: clamp(70px, 8vw, 110px);
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
+.gallery-page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.gallery-tile {
+  min-width: 0;
+  margin: 0;
+}
+
+.gallery-tile-feature,
+.gallery-tile-wide {
+  grid-column: 1 / -1;
+}
+
+.gallery-tile img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--panel);
+}
+
+.gallery-tile-feature img {
+  aspect-ratio: 16 / 9;
+  object-position: 50% 60%;
+}
+
+.gallery-tile-wide img {
+  aspect-ratio: 2.2 / 1;
+  object-position: 50% 60%;
+}
+
+.gallery-tile figcaption {
+  padding-top: 12px;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
 }
 
 .gallery-item {
@@ -879,7 +975,7 @@ a {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1.35fr 0.9fr 0.9fr;
+  grid-template-columns: 1.35fr 0.9fr;
   border-block: 1px solid var(--line-strong);
 }
 
@@ -1075,12 +1171,12 @@ a.contact-card:hover {
   }
 
   .contact-card:first-child {
-    grid-column: 1 / -1;
-    border-bottom: 1px solid var(--line);
+    grid-column: auto;
+    border-bottom: 0;
   }
 
   .contact-card:nth-child(2) {
-    border-left: 0;
+    border-left: 1px solid var(--line);
   }
 }
 
@@ -1177,11 +1273,11 @@ a.contact-card:hover {
   }
 
   .project-card {
-    min-height: 610px;
+    min-height: 385px;
   }
 
   .project-body {
-    min-height: 500px;
+    min-height: 260px;
   }
 
   .leadership {
@@ -1229,8 +1325,8 @@ a.contact-card:hover {
   }
 
   .brand-wordmark {
-    width: 98px;
-    height: 19px;
+    width: 112px;
+    height: 21px;
   }
 
   .hero {
@@ -1314,6 +1410,21 @@ a.contact-card:hover {
 
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .gallery-page-grid,
+  .gallery-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-tile-feature,
+  .gallery-tile-wide {
+    grid-column: auto;
+  }
+
+  .gallery-tile-feature img,
+  .gallery-tile-wide img {
+    aspect-ratio: 3 / 2;
   }
 
   .gallery-feature,

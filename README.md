@@ -1,35 +1,36 @@
 # MECar 홈페이지
 
-연세대학교 자작자동차 동아리 MECar의 공식 정적 홈페이지입니다. `main` 브랜치의 `site/` 폴더가 GitHub Pages로 자동 배포됩니다.
+연세대학교 자작자동차 동아리 MECar의 공개 웹사이트입니다. `main` 브랜치의 `site/` 폴더가 GitHub Pages로 배포됩니다.
 
-- 배포 주소: <https://yonsei-mecar.github.io/>
-- 현재 콘텐츠 기준: 2026/27 시즌, 2026-09-01 확인
-- 빌드 도구: 없음 — HTML, CSS, JavaScript만 사용
+- 주소: <https://yonsei-mecar.github.io/>
+- 구성: 정적 HTML, CSS, JavaScript
 
-## 현재 홈페이지 내용
+## 페이지
 
-- 2026/27 운영진과 5개 팀의 역할·팀장 정보
-- Baja M26B 개선과 2027 e-Formula 첫 출전 준비
-- 공식 연락처 `mecarteam@gmail.com`과 Instagram `@yonseimecar`
-- 2026 KSAE Baja 대회 사진
-- 공식 SVG 로고와 워드마크
-- 반응형 메뉴, 키보드 탐색, 모션 최소화 설정, 명도 대비 개선
-- Open Graph, canonical, Organization 구조화 데이터, `robots.txt`, `sitemap.xml`
-- 배포 전 내부 링크·자산·접근성 기본 항목 자동 검사
+| 파일 | 내용 |
+|---|---|
+| `site/index.html` | 한국어 팀 소개, 차량, 팀, 성과, 협력, 문의 |
+| `site/en.html` | 영문 소개 |
+| `site/gallery.html` | 2025/26 시즌 한국어 갤러리 |
+| `site/gallery-en.html` | 영문 갤러리 |
 
-개인 휴대전화와 개인 이메일은 공개하지 않습니다. 운영진은 이름과 직책만 표시하며 모든 외부 문의는 공식 메일로 받습니다.
+메인 페이지는 팀 개요에서 두 차량 프로젝트, 팀 역할, 대회 성과 순으로 읽을 수 있게 정리했습니다. 갤러리는 별도 페이지에 두어 사진을 보기 쉽게 했습니다.
 
-## 로컬에서 보기
+## 공개 콘텐츠 기준
 
-저장소 루트에서 다음 명령을 실행합니다.
+팀 소개와 영문 문구는 MECar 소개서 초안을 바탕으로 간추렸습니다. 갤러리의 새 차량 주행 사진 4장은 2025/26 갤러리 초안에서 선별했습니다. 팀 사진 2장은 기존 공개 홈페이지에 있던 자산을 사용합니다.
+
+개인 연락처, 설계 제원, 구매·예산 자료, 내부 일정, 확인되지 않은 후원 관계는 웹사이트에 올리지 않습니다. 후원사 이름과 로고는 공개 범위와 사용 허가를 확인한 뒤 추가합니다. 공식 문의는 `mecarteam@gmail.com`으로 받습니다.
+
+헤더에는 공식 워드마크 하나만 사용합니다. 공식 M 심벌은 파비콘과 구조화 데이터에 유지합니다. 두 M을 나란히 배치하지 않도록 한 구성입니다.
+
+## 로컬 확인
 
 ```powershell
 python -m http.server 8000 --directory site
 ```
 
-브라우저에서 <http://localhost:8000>을 엽니다. 파일을 직접 열어도 기본 내용은 보이지만, 로컬 서버가 실제 배포 경로와 더 가깝습니다.
-
-## 배포 전 확인
+브라우저에서 <http://localhost:8000>을 엽니다. `file://`로 직접 열면 브라우저 보안 정책에 따라 SVG 로고 마스크가 표시되지 않을 수 있습니다.
 
 ```powershell
 python check-site.py
@@ -38,70 +39,8 @@ python build-single.py
 git diff --check
 ```
 
-`build-single.py`는 메일 첨부나 별도 전달에 쓸 단일 HTML을
-`dist/mecar-onefile.html`에 만듭니다. `dist/`는 생성물이라 Git에서 추적하지
-않습니다.
-
-`check-site.py`는 다음 항목을 별도 패키지 없이 검사합니다.
-
-- 중복 ID와 끊어진 내부 앵커
-- 존재하지 않는 CSS·JavaScript·이미지 경로
-- 이미지 대체 텍스트와 고유 크기
-- 새 창 링크의 `rel="noopener"`
-- H1 개수와 헤딩 단계
-- 임시 문구, 과거 미확인 메일, 인코딩 손상
-
-같은 검사는 GitHub Pages 배포 작업에서도 먼저 실행됩니다.
-
-## 폴더 구조
-
-```text
-Yonsei-MECar.github.io/
-├─ .github/workflows/pages.yml  # 검사 후 GitHub Pages 배포
-├─ check-site.py                # 정적 사이트 사전 검사
-├─ build-single.py              # CSS·JS·파비콘을 HTML에 포함하는 보조 도구
-└─ site/
-   ├─ index.html                # 콘텐츠와 문서 구조
-   ├─ robots.txt
-   ├─ sitemap.xml
-   ├─ favicon.svg
-   └─ assets/
-      ├─ css/
-      │  ├─ tokens.css          # 색상·서체·간격 토큰
-      │  └─ style.css           # 레이아웃과 반응형 스타일
-      ├─ img/                   # 공식 로고와 홈페이지 공개용 사진
-      └─ js/main.js             # 메뉴·스크롤·현재 섹션 표시
-```
-
-## 콘텐츠 기준
-
-홈페이지 문구는 팀 노션의 다음 페이지를 기준으로 정리했습니다.
-
-- `MECar` / `About Us!`
-- `2026/27 활동`
-- 기계 1·2·3팀, 전장팀, 운영기획팀의 26/27 페이지
-- `26/27 임원진 명단`
-- Formula·Baja 개발일정
-- `25/26 KSAE BAJA 대회 기록`
-- `갤러리`
-
-세부 개발 일정은 변경 가능성이 커서 공개 홈페이지에는 방향과 핵심 작업만 요약했습니다. 대회 성적과 운영진은 팀 기록을 확인해 반영하고, 제원과 후원사 로고는 공식 확인 전까지 추정해서 넣지 않습니다.
-
-## 사진과 로고
-
-- `logo-mark.svg`, `logo-wordmark.svg`: 승인된 동아리 로고 원본을 벡터화한 자산
-- `*-2026.jpg`: 팀 공유 드라이브의 2026 KSAE Baja 홈페이지 공개용 사진
-- 사진에는 `width`, `height`, 설명형 `alt`를 지정하고, 첫 화면을 제외한 사진은 지연 로딩합니다.
-
-사진 추가 전 공개 동의와 사용 권한을 확인하세요. 자세한 규칙은 [이미지 안내](site/assets/img/README.md)에 있습니다.
+`check-site.py`는 네 HTML 페이지의 기본 구조, 이미지 속성, 내부 앵커와 로컬 파일 경로를 확인합니다. `build-single.py`는 한국어 메인 페이지의 CSS·JavaScript를 포함한 보조 HTML을 `dist/`에 만듭니다. 사진은 별도 파일로 남습니다.
 
 ## 배포
 
-`main` 브랜치에 반영되면 `.github/workflows/pages.yml`이 다음 순서로 동작합니다.
-
-1. 정적 사이트 사전 검사
-2. JavaScript 문법 및 보조 빌드 확인
-3. `site/` 업로드
-4. GitHub Pages 배포
-
-커스텀 도메인은 DNS, HTTPS, 메일 수신을 모두 확인한 뒤 canonical·OG URL·sitemap을 함께 변경해야 합니다.
+`.github/workflows/pages.yml`이 위 검사를 통과하면 `site/`를 GitHub Pages에 배포합니다. 사진 자산의 출처와 추가 기준은 [이미지 안내](site/assets/img/README.md)를 참고하세요.

@@ -9,6 +9,7 @@
   var footer = document.querySelector('.site-footer');
   var mobile = window.matchMedia('(max-width: 900px)');
   var lastFocused = null;
+  var english = document.documentElement.lang.toLowerCase().startsWith('en');
 
   root.classList.add('nav-ready');
 
@@ -31,7 +32,7 @@
     header.classList.add('menu-open');
     document.body.classList.add('menu-locked');
     menuButton.setAttribute('aria-expanded', 'true');
-    menuButton.setAttribute('aria-label', '메뉴 닫기');
+    menuButton.setAttribute('aria-label', english ? 'Close menu' : '메뉴 닫기');
     setPageInert(true);
 
     var firstLink = nav.querySelector('a');
@@ -44,7 +45,7 @@
     header.classList.remove('menu-open');
     document.body.classList.remove('menu-locked');
     menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', '메뉴 열기');
+    menuButton.setAttribute('aria-label', english ? 'Open menu' : '메뉴 열기');
     setPageInert(false);
 
     if (restoreFocus && lastFocused && typeof lastFocused.focus === 'function') {
@@ -100,6 +101,11 @@
   function updateHeader() {
     if (!header) return;
     header.classList.toggle('is-scrolled', window.scrollY > 24);
+    if (window.scrollY < 120) {
+      document.querySelectorAll('.site-nav a[aria-current="true"]').forEach(function (link) {
+        link.removeAttribute('aria-current');
+      });
+    }
   }
 
   updateHeader();
