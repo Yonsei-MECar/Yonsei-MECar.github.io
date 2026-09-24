@@ -7,6 +7,31 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://yonsei-mecar.github.io/about.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://yonsei-mecar.github.io/vehicles.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://yonsei-mecar.github.io/team.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://yonsei-mecar.github.io/results.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://yonsei-mecar.github.io/partners.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://yonsei-mecar.github.io/en.html</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>

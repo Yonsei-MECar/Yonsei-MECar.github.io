@@ -4,8 +4,8 @@
 
 | 파일 | 용도 | 출처 |
 |---|---|---|
-| `logo-mark.svg` | 헤더용 M 심벌 | 공식 로고 원본의 벡터 자산 |
-| `logo-wordmark.svg` | MECar 워드마크 | 승인 워드마크 원본의 벡터 자산 |
+| `logo-mark.svg` | 파비콘 등에 쓰는 M 심벌 | 공식 로고 원본의 벡터 자산 |
+| `logo-wordmark.svg` | MECar 워드마크. M과 E 사이 여백 조정 | 공식 로고 원본의 벡터 자산 |
 | `hero-baja-2026.jpg` | 히어로·Open Graph | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
 | `vehicle-check-baja-2026.jpg` | 대회 출발 전 차량 점검 장면 | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
 | `team-baja-2026.jpg` | 대회 현장 단체사진 | 팀 공유 드라이브의 2026 KSAE Baja 원본 |
@@ -18,7 +18,7 @@
 | `baja-2026-circuit.jpg` | 비포장 코스 주행 | 2025/26 갤러리 초안의 2026 KSAE Baja 사진 |
 
 Notion의 서명된 이미지 URL은 만료되므로 HTML에서 직접 참조하지 않습니다. 새 사진은 웹용 크기로 줄이고 EXIF 메타데이터를 제외해 저장했습니다.
-기존 2024 사진은 기록용으로 남겨 두었으며 현재 페이지에서는 불러오지 않습니다.
+2024년 대회 사진 중 차량과 팀 사진은 갤러리에 사용합니다. 설계 발표 자료가 보이는 사진은 공개 사이트에서 제외했습니다.
 
 ## 추가할 때 지킬 것
 
@@ -28,7 +28,7 @@ Notion의 서명된 이미지 URL은 만료되므로 HTML에서 직접 참조하
 - 첫 화면 이미지는 가급적 500KB 안팎, 나머지는 800KB 이하를 목표로 합니다.
 - 사진 비율에 맞는 `width`와 `height`를 HTML에 적습니다.
 - 의미 있는 사진에는 장면을 설명하는 `alt`를 씁니다. 단순 장식이면 `alt=""`로 둡니다.
-- 첫 화면 사진을 제외하고 `loading="lazy"`와 `decoding="async"`를 사용합니다.
+- 화면에서 사진이 안정적으로 표시되는지 확인하고, 필요할 때 `loading="lazy"`를 사용합니다.
 
 예시:
 
@@ -36,7 +36,7 @@ Notion의 서명된 이미지 URL은 만료되므로 HTML에서 직접 참조하
 <img src="assets/img/race-baja-2026.jpg"
      alt="2026 KSAE Baja에서 다른 차량과 나란히 달리는 MECar 20번 차량"
      width="2048" height="1365"
-     loading="lazy" decoding="async">
+     decoding="async">
 ```
 
 후원사 로고는 현재 후원 관계와 로고 사용 지침을 확인한 뒤 `sponsors/` 하위에 추가합니다.

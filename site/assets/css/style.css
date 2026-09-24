@@ -436,7 +436,7 @@ a {
 
 .hero-wordmark {
   width: clamp(210px, 24vw, 330px);
-  aspect-ratio: 1396 / 264;
+  aspect-ratio: 1444 / 264;
   margin-bottom: 28px;
   background: white;
 }
@@ -1074,7 +1074,7 @@ a.contact-card:hover {
 
 .footer-wordmark {
   width: min(320px, 80%);
-  aspect-ratio: 1396 / 264;
+  aspect-ratio: 1444 / 264;
   background: var(--ink);
 }
 
