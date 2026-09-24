@@ -221,8 +221,8 @@ a {
 .brand-wordmark,
 .hero-wordmark,
 .footer-wordmark {
-  -webkit-mask: url("../img/logo-wordmark.svg") center / contain no-repeat;
-  mask: url("../img/logo-wordmark.svg") center / contain no-repeat;
+  -webkit-mask: url("../img/logo-wordmark.svg?v=20260924b") center / contain no-repeat;
+  mask: url("../img/logo-wordmark.svg?v=20260924b") center / contain no-repeat;
 }
 
 /* Header ----------------------------------------------------------------- */
@@ -436,7 +436,7 @@ a {
 
 .hero-wordmark {
   width: clamp(210px, 24vw, 330px);
-  aspect-ratio: 1444 / 264;
+  aspect-ratio: 1416 / 264;
   margin-bottom: 28px;
   background: white;
 }
@@ -1074,7 +1074,7 @@ a.contact-card:hover {
 
 .footer-wordmark {
   width: min(320px, 80%);
-  aspect-ratio: 1444 / 264;
+  aspect-ratio: 1416 / 264;
   background: var(--ink);
 }
 
